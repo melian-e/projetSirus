@@ -1,0 +1,77 @@
+HTML { 
+    overflow-x :hidden; 
+    overflow-y :hidden;
+}
+
+body{
+  background-image: url('asset/backflou.jpg');
+}
+  
+  
+.grid-container {
+    width:99%;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 5fr 2fr 2fr;
+    grid-template-rows: 5fr 35fr 20fr 10fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "Infos-avancement-partie Infos-avancement-partie Infos-avancement-partie"
+      "Map Infos-region Liste-actions-région"
+      "Map Filtres Liste-actions-région";
+  }
+
+  .Infos-avancement-partie {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      ".";
+    grid-area: Infos-avancement-partie;
+    background-color: blueviolet;
+  }
+
+  .Map {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      ".";
+    grid-area: Map;
+    background-color: burlywood;
+  }
+
+  .Infos-region {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      ".";
+    grid-area: Infos-region;
+    background-color: cyan;
+  }
+
+  .Filtres {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      ".";
+    grid-area: Filtres;
+    background-color: khaki;
+  }
+
+  .Liste-actions-région {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      ".";
+    grid-area: Liste-actions-région;
+    background-color: skyblue;
+  }
