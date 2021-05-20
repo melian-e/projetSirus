@@ -75,3 +75,11 @@ body{
     grid-area: Liste-actions-région;
     background-color: skyblue;
   }
+
+#canvas1{
+    /*border: 2px solid white;*/
+    display: block;
+    margin: auto;
+    width: 400px;
+    height: 400px;
+}
