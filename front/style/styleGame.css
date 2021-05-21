@@ -4,7 +4,9 @@ HTML {
 }
 
 body{
-  background-image: url('asset/backflou.jpg');
+  background-image: url('asset/nikamouk2.png');
+  background-position: absolute;
+  background-repeat: no-repeat;
 }
   
   
@@ -40,7 +42,7 @@ body{
     grid-template-areas:
       ".";
     grid-area: Map;
-    background-color: burlywood;
+    /*background-color: burlywood;*/
   }
 
   .Infos-region {
