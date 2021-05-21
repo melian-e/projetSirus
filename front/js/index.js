@@ -157,6 +157,7 @@ const onClick = (e) => {
     x = Math.floor(x);
     y = Math.floor(y);
     matriceRegions.forEach(region => {
+        document.getElementById("actionh3").innerHTML = "Actions dans la region " + region.name;
         if(region.name == matpxl[x + y * 400].region){
             let ad="<p>Info Régions </br>"+region.name+"</br><i class=\"far fa-angry\"></i>Mécontentement : "+region.mecontentement+"%</br><i class=\"fas fa-head-side-virus\"></i>Contaminés : "+region.contamines+"</br><i class=\"fas fa-skull-crossbones\"></i>Morts : "+region.morts+"</br><i class=\"fas fa-users\"></i>Population : "+region.population+"</p>";
             regionAff.innerHTML=ad;
