@@ -1,4 +1,4 @@
-let regionAff = document.getElementById("region");
+let regionAff = document.getElementById("regionAff");
 
 class France{
     constructor(imageRegions, imagePropa, imageSatellite) {
