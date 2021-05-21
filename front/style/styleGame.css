@@ -36,53 +36,52 @@ body{
 }
 
   .Map {
-   
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     grid-template-areas:
       ".";
     grid-area: Map;
-<<<<<<< HEAD
-=======
     /*background-color: burlywood;*/
->>>>>>> mapLouic
   }
   
   .Infos-region {
+    color: white;
     border-radius: 30px;
-    border: solid;
+    border: solid black;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     grid-template-areas:
       ".";
     grid-area: Infos-region;
-    background-color: rgb(0, 0, 0, 0.2);
+    background-color: rgb(0, 0, 0, 0.5);
   }
   
   .Filtres {
+    color: white;
     border-radius: 30px;
-    border: solid;
+    border: solid black;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     grid-template-areas:
       ".";
     grid-area: Filtres;
-    background-color: rgb(0, 0, 0, 0.2);
+    background-color: rgb(0, 0, 0, 0.5);
   }
   
   .Liste-actions-région {
+    color: white;
     border-radius: 30px;
-    border: solid;
+    border: solid black;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     grid-template-areas:
       ".";
     grid-area: Liste-actions-région;
-    background-color: rgb(0, 0, 0, 0.2);
+    background-color: rgb(0, 0, 0, 0.5);
   }
 
   h1{
