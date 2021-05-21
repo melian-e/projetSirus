@@ -34,7 +34,9 @@ function repCheckbox(id){                                   //message si checkbo
     
 }
 
+let idmap = 1;
 function checkfiltres(id){                          //regarde si un autre filtre est selectionne et deselectionne celui qui est selectionne lors d'un changement de filtre
+    idmap = id;
     let id2
     let id3
 
@@ -60,7 +62,6 @@ function checkfiltres(id){                          //regarde si un autre filtre
     if(document.getElementById('map'+id).checked == true){
         document.getElementById('map'+id2).checked = false
         document.getElementById('map'+id3).checked = false
-        alert("test");
 
         document.getElementById('map'+id2).removeAttribute("disabled", "")
         document.getElementById('map'+id3).removeAttribute("disabled", "")
