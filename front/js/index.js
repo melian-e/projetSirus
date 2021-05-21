@@ -156,12 +156,8 @@ const onClick = (e) => {
     y = Math.floor(y);
     matriceRegions.forEach(region => {
         if(region.name == matpxl[x + y * 400].region){
-            console.log("Informations sur " + region.name + " :");
-            console.log("   | Population maximum = " + region.populationMax);
-            console.log("   | Population placée = " + region.population);
-            console.log("   | Contaminés = " + region.contamines);
-            console.log("   | Morts = " + region.morts);
-            console.log("   | Recovered = " + region.recovered);
+            let ad="<p>Info Régions </br>"+region.name+"</br><i class=\"far fa-angry\"></i>Mécontentement : "+region.mecontentement+"%</br><i class=\"fas fa-head-side-virus\"></i>Contaminés : "+region.contamines+"</br><i class=\"fas fa-skull-crossbones\"></i>Morts : "+region.morts+"</br><i class=\"fas fa-users\"></i>Population : "+region.population+"</p>";
+            regionAff.innerHTML=ad;
         }
     });
     console.log("Coordonnées  = " + x + ' ' + y);
