@@ -7,6 +7,7 @@ body{
   background-image: url('asset/nikamouk2.png');
   background-position: absolute;
   background-repeat: no-repeat;
+  color:white;
 }
 
 .grid-container {
@@ -43,10 +44,6 @@ body{
     grid-template-areas:
       ".";
     grid-area: Map;
-<<<<<<< HEAD
-=======
-    /*background-color: burlywood;*/
->>>>>>> mapLouic
   }
   
   .Infos-region {
