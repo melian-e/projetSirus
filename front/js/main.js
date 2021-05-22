@@ -17,9 +17,9 @@ document.getElementById("filtres").innerHTML += "<div style='margin-bottom:2%;'>
 document.getElementById("filtres").innerHTML += "<div style='margin-bottom:2%;'>Map 3<input type='checkbox' id='map3' onclick='checkfiltres(genre,3)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' ></div>" 
 
 let genre2 = 'filtre'
-document.getElementById("filtres").innerHTML = document.getElementById("filtres").innerHTML + "<div style='margin-bottom:2%;'>Map des régions<input type='checkbox' id='filtre1' onclick='checkfiltres(genre2, 1)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' checked disabled></div></br>"                      //affichage des différent filtres
-document.getElementById("filtres").innerHTML = document.getElementById("filtres").innerHTML + "<div style='margin-bottom:2%;'>Map neutre<input type='checkbox' id='filtre2' onclick='checkfiltres(genre2,2)' class='apple-switch' style='position:relative; float:right; margin-right:2%;'></div></br>" 
-document.getElementById("filtres").innerHTML = document.getElementById("filtres").innerHTML + "<div style='margin-bottom:2%;'>Map vue satellite<input type='checkbox' id='filtre3' onclick='checkfiltres(genre2,3)' class='apple-switch' style='position:relative; float:right; margin-right:2%;'></div></br>" 
+document.getElementById("filtres").innerHTML += "<p style='border-top: solid; margin-left:10%; margin-right:10%;border-width: 2px;'></p><div style='margin-bottom:2%;'>Filtre 1<input type='checkbox' id='filtre1' onclick='checkfiltres(genre2,1)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' checked disabled></div></br>"
+document.getElementById("filtres").innerHTML += "<div style='margin-bottom:2%;'>Filtre 2<input type='checkbox' id='filtre2' onclick='checkfiltres(genre2,2)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' ></div></br>"
+document.getElementById("filtres").innerHTML += "<div style='margin-bottom:2%;'>Filtre 3<input type='checkbox' id='filtre3' onclick='checkfiltres(genre2,3)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' ></div>" 
 
 function supression(id){                                    //fait apparaitre ou disparaitre le resume d'une action
     if(window.getComputedStyle(document.getElementById(id), null).getPropertyValue("display") == "none"){
