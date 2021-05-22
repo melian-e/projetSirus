@@ -136,8 +136,14 @@ imgSatellite.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQCAYAAA
 }
 
 let ascko = new France(imgRegions, imgPropa, imgSatellite);
-let matpxl = ascko.display(imgRegions);
-console.log(matpxl);
+
+let matpxl;
+document.addEventListener('DOMContentLoaded', function() {
+    matpxl = ascko.display(imgRegions);
+    console.log(matpxl);
+});
+
+
 
 let matriceRegions = [];
 matriceRegions.push(new Region("Hauts-de-France", "rgb(0, 162, 217)", 0, 0, 0, 0, 5975757, 0));
@@ -207,75 +213,3 @@ const onClick = (e) => {
 };
 
 canvas.addEventListener('click', onClick);
-
-
-
-
-
-/*
-
-fs.readFile("./players.json", (err, data) => { //lecture du JSON
-            if(err) throw err;
-            const players = JSON.parse(data);
-
-            let match = 0;
-            for(let i = 0; i < players.players.length; i++){ //check si le joueur existe déjà
-                if(players.players[i].name == sock.handshake.session.username){
-                    match += i + 1;
-                }
-            }
-            
-            if(match == 0){ //s'il n'existe pas création d'un joueur
-                let newPlayer = {
-                    "name": sock.handshake.session.username,
-                    "gamesNb": 1,
-                    "nbTry": score
-                }
-                players.players.push(newPlayer); //push du nouveau joueur dans le tableau
-                let mydatas = JSON.stringify(players, null, 2);
-    
-                fs.writeFile("./players.json", mydatas, (err) => { //on overwrite le JSON avec le nouveau tableau
-                    if (err) throw err;
-                    console.log('Data written to file');
-                });
-            } else { //s'il existe modification du tableau
-                players.players[match-1].gamesNb += 1;
-                players.players[match-1].nbTry += score;
-
-                let mydatas = JSON.stringify(players, null, 2);
-    
-                fs.writeFile("./players.json", mydatas, (err) => { //ecriture du nouveau tableau dans le JSON
-                    if (err) throw err;
-                    console.log('Data written to file');
-                });
-            }
-            
-        });
-
-
-
-
-
-
-    const ctx = canvas.getContext('2d');
-    let scannedImage = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    let scannedData = scannedImage.data;
-
-        for(let i = 0; i < 400*400*4; i+=4){
-            if(matpxl[i/4].region == "Normandie"){
-                scannedData[i] = 0;
-                scannedData[i+1] = 0;
-                scannedData[i+2] = 0;
-            } else if(matpxl[i/4].region == "Grand Est"){
-                scannedData[i] = 0;
-                scannedData[i+1] = 0;
-                scannedData[i+2] = 0;
-            } else {
-                scannedData[i] = 255;
-                scannedData[i+1] = 255;
-                scannedData[i+2] = 255;
-            }
-        }
-        scannedImage.data = scannedData;
-        ctx.putImageData(scannedImage, 0, 0);
-*/
