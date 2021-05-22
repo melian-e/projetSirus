@@ -91,9 +91,8 @@ class Pays{
     }
 }
 
-class Region extends Pays{
+class Region{
     constructor(name, color, mecontentement, contamines, morts, population, populationMax, recovered){
-        super();
         this.name = name;
         this.color = color;
         this.mecontentement = mecontentement;
@@ -106,7 +105,7 @@ class Region extends Pays{
 
 }
 
-class Ville extends Region{
+class Ville{
     constructor(rayon, densite, x, y, population){
         this.rayon = rayon;
         this.densite = densite;

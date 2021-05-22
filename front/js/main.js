@@ -1,7 +1,7 @@
 socket.emit('json', '');                                    //demande au server de l'envoie du JSON des actions
 
 socket.on('jsonaction', json =>{                            //reception JSON
-    console.table(json.cartes)
+    //console.table(json.cartes)
 
     document.getElementById("action").innerHTML = document.getElementById("action").innerHTML + "<h3 style='text-align:center;margin-bottom:7%; font-family:turfu;' id='actionh3'>Actions dans la region </h3>"
     for (let i=0; i<json.cartes.length; i++){
@@ -39,9 +39,9 @@ function repCheckbox(id){                                   //message si checkbo
     
 }
 
-let idmap = 1;
+let currentMap = imgRegions;
+let currentFiltre = "population";
 function checkfiltres(genre, id){                          //regarde si un autre filtre est selectionne et deselectionne celui qui est selectionne lors d'un changement de filtre
-    idmap = id;
     let id2
     let id3
 
@@ -52,21 +52,42 @@ function checkfiltres(genre, id){                          //regarde si un autre
         id2 = 2
         id3 = 3
         if(genre == 'map'){
-            ascko.display(imgRegions);
+            france.display(imgRegions);
+            currentMap = imgRegions;
+            affichage(matpxl, currentFiltre);
+        }
+        if(genre == 'filtre'){
+            france.display(currentMap);
+            affichage(matpxl, "population");
+            currentFiltre = "population";
         }
     }
     else if(id == 2){
         id2 = 1
         id3 = 3
         if(genre == 'map'){
-            ascko.display(imgPropa);
+            france.display(imgPropa);
+            currentMap = imgPropa;
+            affichage(matpxl, currentFiltre);
+        }
+        if(genre == 'filtre'){
+            france.display(currentMap);
+            affichage(matpxl, "contamines");
+            currentFiltre = "contamines";
         }
     }
     else{
         id2 = 1
         id3 = 2
         if(genre == 'map'){
-            ascko.display(imgSatellite);
+            france.display(imgSatellite);
+            currentMap = imgSatellite;
+            affichage(matpxl, currentFiltre);
+        }
+        if(genre == 'filtre'){
+            france.display(currentMap);
+            affichage(matpxl, "morts");
+            currentFiltre = "morts";
         }
     }
 

@@ -1,11 +1,5 @@
 let france = new Pays(imgRegions, imgPropa, imgSatellite);
 
-let matpxl;
-document.addEventListener('DOMContentLoaded', function() {
-    matpxl = france.display(imgRegions);
-    console.log(matpxl);
-});
-
 let matriceRegions = [];
 matriceRegions.push(new Region("Hauts-de-France", "rgb(0, 162, 217)", 0, 0, 0, 0, 5975757, 0));
 matriceRegions.push(new Region("Grand Est", "rgb(135, 68, 255)", 0, 0, 0, 0, 5522476, 0));
@@ -21,6 +15,24 @@ matriceRegions.push(new Region("Occitanie", "rgb(255, 199, 112)", 0, 0, 0, 0, 59
 matriceRegions.push(new Region("Provence-Alpes-Côte d'Azur", "rgb(217, 237, 20)", 0, 0, 0, 0, 5088998, 0));
 matriceRegions.push(new Region("Corse", "rgb(255, 165, 121)", 0, 0, 0, 0, 349269, 0));
 
+let villes = [];
+//ici creation des villes
 
+let matpxl;
+document.addEventListener('DOMContentLoaded', function() {
+    matpxl = france.display(imgRegions);
+    console.log(matpxl);
+
+    let a = initPopulation(matpxl, matriceRegions, villes);
+    matpxl = a.map;
+    matriceRegions = a.regions;
+
+    a = apparitionVirus(5, matpxl, matriceRegions);
+    matpxl = a.map;
+    matriceRegions = a.regions;
+
+    affichage(matpxl, "population");
+
+});
 
 //%*r/255*pop/surf
