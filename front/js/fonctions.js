@@ -1,3 +1,5 @@
+const canvas = document.getElementById('canvas1');
+
 const getClickCoords = (elem, event) => { //renvoie les coords de l'event dans l'élément passé en paramètre
     const { top, left } = elem.getBoundingClientRect();
     const { clientX, clientY} = event;
@@ -8,7 +10,6 @@ const getClickCoords = (elem, event) => { //renvoie les coords de l'event dans l
     };
 };
 
-const canvas = document.getElementById('canvas1');
 const onClick = (e) => { 
     let { x, y } = getClickCoords(canvas, e);
     x = Math.floor(x);
