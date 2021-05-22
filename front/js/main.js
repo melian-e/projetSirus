@@ -3,18 +3,23 @@ socket.emit('json', '');                                    //demande au server 
 socket.on('jsonaction', json =>{                            //reception JSON
     console.table(json.cartes)
 
-    document.getElementById("action").innerHTML = document.getElementById("action").innerHTML + "<h3 style='text-align:center;margin-bottom:7%; font-family:turfu;' id='actionh3'>Actions dans la region </h3>"
+    document.getElementById("action").innerHTML += "<h3 style='text-align:center;margin-bottom:7%; font-family:turfu;'>Actions dans la region [inserez la region]</h3>"
     for (let i=0; i<json.cartes.length; i++){
         let id = json.cartes[i].id
-        document.getElementById("action").innerHTML = document.getElementById("action").innerHTML + "<div class='listeningaction'><a onclick='supression("+id+")'><img src='../style/asset/flechecote.png' style='width:3%;' id='"+id+"img'>  " + json.cartes[i].titre +  "</a><input type='checkbox' class='apple-switch' style='position:relative; float:right; margin-top:-1%; margin-right:2%;' onclick='repCheckbox("+id+")' id='"+id+"check'><br><div style='display:none;' id='"+id+"'>"+ json.cartes[i].resume+ "</div></div>"   
+        document.getElementById("action").innerHTML += "<div class='listeningaction'><a onclick='supression("+id+")'><img src='../style/asset/flechecote.png' style='width:3%;' id='"+id+"img'>  " + json.cartes[i].titre +  "</a><input type='checkbox' class='apple-switch' style='position:relative; float:right; margin-top:-1%; margin-right:2%;' onclick='repCheckbox("+id+")' id='"+id+"check'><br><div style='display:none;' id='"+id+"'>"+ json.cartes[i].resume+ "</div></div>"   
     }
                                                             //ecriture dans l'html des infosmations du JSON
     
 })
+let genre = 'map'
+document.getElementById("filtres").innerHTML += "<div style='margin-bottom:2%;'>Map 1<input type='checkbox' id='map1' onclick='checkfiltres(genre,1)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' checked disabled></div></br>"
+document.getElementById("filtres").innerHTML += "<div style='margin-bottom:2%;'>Map 2<input type='checkbox' id='map2' onclick='checkfiltres(genre,2)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' ></div></br>"
+document.getElementById("filtres").innerHTML += "<div style='margin-bottom:2%;'>Map 3<input type='checkbox' id='map3' onclick='checkfiltres(genre,3)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' ></div>" 
 
-document.getElementById("filtres").innerHTML = document.getElementById("filtres").innerHTML + "<div style='margin-bottom:2%;'>Map des régions<input type='checkbox' id='map1' onclick='checkfiltres(1)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' checked disabled></div></br>"                      //affichage des différent filtres
-document.getElementById("filtres").innerHTML = document.getElementById("filtres").innerHTML + "<div style='margin-bottom:2%;'>Map neutre<input type='checkbox' id='map2' onclick='checkfiltres(2)' class='apple-switch' style='position:relative; float:right; margin-right:2%;'></div></br>" 
-document.getElementById("filtres").innerHTML = document.getElementById("filtres").innerHTML + "<div style='margin-bottom:2%;'>Map vue satellite<input type='checkbox' id='map3' onclick='checkfiltres(3)' class='apple-switch' style='position:relative; float:right; margin-right:2%;'></div></br>" 
+let genre2 = 'filtre'
+document.getElementById("filtres").innerHTML = document.getElementById("filtres").innerHTML + "<div style='margin-bottom:2%;'>Map des régions<input type='checkbox' id='filtre1' onclick='checkfiltres(genre2, 1)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' checked disabled></div></br>"                      //affichage des différent filtres
+document.getElementById("filtres").innerHTML = document.getElementById("filtres").innerHTML + "<div style='margin-bottom:2%;'>Map neutre<input type='checkbox' id='filtre2' onclick='checkfiltres(genre2,2)' class='apple-switch' style='position:relative; float:right; margin-right:2%;'></div></br>" 
+document.getElementById("filtres").innerHTML = document.getElementById("filtres").innerHTML + "<div style='margin-bottom:2%;'>Map vue satellite<input type='checkbox' id='filtre3' onclick='checkfiltres(genre2,3)' class='apple-switch' style='position:relative; float:right; margin-right:2%;'></div></br>" 
 
 function supression(id){                                    //fait apparaitre ou disparaitre le resume d'une action
     if(window.getComputedStyle(document.getElementById(id), null).getPropertyValue("display") == "none"){
@@ -28,43 +33,47 @@ function supression(id){                                    //fait apparaitre ou
 }
 
 function repCheckbox(id){                                   //message si checkbox est coche
-    if(document.getElementById(id+'check').checked == true){
-        alert("t bg")
+    if(document.getElementById(id).checked == true){
     }
     
 }
 
 let idmap = 1;
-function checkfiltres(id){                          //regarde si un autre filtre est selectionne et deselectionne celui qui est selectionne lors d'un changement de filtre
+function checkfiltres(genre, id){                          //regarde si un autre filtre est selectionne et deselectionne celui qui est selectionne lors d'un changement de filtre
     idmap = id;
     let id2
     let id3
 
-    document.getElementById('map'+id).setAttribute("disabled", "")
+    document.getElementById(genre+id).setAttribute("disabled", "")
     let canvas = document.getElementById('canvas1');
     const ctx = canvas.getContext('2d');
     if(id == 1){
         id2 = 2
         id3 = 3
-        ascko.display(imgRegions);
+        if(genre == 'map'){
+            ascko.display(imgRegions);
+        }
     }
     else if(id == 2){
         id2 = 1
         id3 = 3
-        ascko.display(imgPropa);
+        if(genre == 'map'){
+            ascko.display(imgPropa);
+        }
     }
     else{
         id2 = 1
         id3 = 2
-        ascko.display(imgSatellite);
+        if(genre == 'map'){
+            ascko.display(imgSatellite);
+        }
     }
 
-    if(document.getElementById('map'+id).checked == true){
-        document.getElementById('map'+id2).checked = false
-        document.getElementById('map'+id3).checked = false
-
-        document.getElementById('map'+id2).removeAttribute("disabled", "")
-        document.getElementById('map'+id3).removeAttribute("disabled", "")
+    if(document.getElementById(genre+id).checked == true){
+        document.getElementById(genre+id2).checked = false
+        document.getElementById(genre+id3).checked = false
+        document.getElementById(genre+id2).removeAttribute("disabled", "")
+        document.getElementById(genre+id3).removeAttribute("disabled", "")
     }
 
 
