@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     affichage(matpxl, "population");
 
+    let cmpt = 0;
     setInterval(() => {
         a = propagation(matpxl, dataFrance, matriceRegions);
         matpxl = clone(a.map);
@@ -54,9 +55,15 @@ document.addEventListener('DOMContentLoaded', function() {
         france.recovered = dataFrance.recovered;
         france.contamines = dataFrance.contamines;
 
-        france.display(currentMap);
-        affichage(matpxl, currentFiltre);
-        affBordure(currentRegion);
+        if(cmpt%1 == 0){
+            france.display(currentMap);
+            affichage(matpxl, currentFiltre);
+            if(currentRegion != ""){
+                affBordure(currentRegion);
+            }
+        }
+        cmpt++;
+
     }, 100);
     
 });

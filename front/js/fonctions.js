@@ -11,7 +11,7 @@ const getClickCoords = (elem, event) => { //renvoie les coords de l'event dans l
     };
 };
 
-const onClick = (e) => { 
+const onClick = (e) => {
     let { x, y } = getClickCoords(canvas, e);
 
     x = Math.floor(x);
@@ -23,6 +23,8 @@ const onClick = (e) => {
     let verifRegion = false;
     
     matriceRegions.forEach(region => {
+
+        console.log("test");
         
         if(region.name == matpxl[x + y * 400].region){
             affBordure(region);
@@ -49,6 +51,9 @@ const onClick = (e) => {
     });
 
     if (verifRegion == false) {
+        france.display(currentMap);
+        affichage(matpxl, currentFiltre);
+        currentRegion = "";
         //----------------------------------------------------------------------------------------------
         //document.getElementById("actionh3").innerHTML = "Actions dans la region " + region.name;
         //let ad="<p>Info Régions </br>France</br><i class=\"far fa-angry\"></i>Mécontentement : "+region.mecontentement+"%</br><i class=\"fas fa-head-side-virus\"></i>Contaminés : "+region.contamines+"</br><i class=\"fas fa-skull-crossbones\"></i>Morts : "+region.morts+"</br><i class=\"fas fa-users\"></i>Population : "+region.population+"</p>";
@@ -83,8 +88,11 @@ const onClick2 = (e) => {
     x1 = Math.floor(e.clientX);
     y1 = Math.floor(e.clientY);
 
-    if ((x1 < 158 || x1 > 557) && x1 < 638 && y1 > 82){
+    if ((x1 < 158 || x1 > 557) && x1 < 638 && y1 > 82 && (y1 < 262 || y1 > 561)){
         console.log("Coordonnées  = " + x1 + ' ' + y1);
+        france.display(currentMap);
+        affichage(matpxl, currentFiltre);
+        currentRegion = "";
         //----------------------------------------------------------------------------------------------
         //document.getElementById("actionh3").innerHTML = "Actions dans la region " + region.name;
         //let ad="<p>Info Régions </br>France</br><i class=\"far fa-angry\"></i>Mécontentement : "+region.mecontentement+"%</br><i class=\"fas fa-head-side-virus\"></i>Contaminés : "+region.contamines+"</br><i class=\"fas fa-skull-crossbones\"></i>Morts : "+region.morts+"</br><i class=\"fas fa-users\"></i>Population : "+region.population+"</p>";
@@ -187,7 +195,7 @@ function affichage(map, type){
     ctx.putImageData(scannedImage, 0, 0);
 }
 
-function propagation(map, regions, dataPays /* + MUTATEURS */){
+function propagation(map, dataPays, regions /* + MUTATEURS */){
     console.log("propagation");
         for(let i = 0; i < map.length; i++){
             if((map[i].contamines > 0) && (i > 0) && ((i % 400) > 0)){
@@ -286,7 +294,7 @@ function propagation(map, regions, dataPays /* + MUTATEURS */){
             map[i].tmpcontamines = 0;
         }
         
-    return {map, regions, dataPays};
+    return {map, dataPays, regions};
 }
 
 function clone(base){
