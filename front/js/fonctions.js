@@ -83,6 +83,13 @@ function affBordure(region){
     let ad="<p>Info Régions </br>"+region.name+"</br><i class=\"far fa-angry\"></i>Mécontentement : "+region.mecontentement+"%</br><i class=\"fas fa-head-side-virus\"></i>Contaminés : "+region.contamines+"</br><i class=\"fas fa-skull-crossbones\"></i>Morts : "+region.morts+"</br><i class=\"fas fa-users\"></i>Population : "+region.population+"</p>";
     document.getElementById("regionAff").innerHTML=ad;
 }
+
+function affFrance(){
+    document.getElementById("actionh3").innerHTML = "Actions dans la region France";
+    let ad="<p>Info Régions </br>France</br><i class=\"far fa-angry\"></i>Mécontentement : "+france.mecontentement+"%</br><i class=\"fas fa-head-side-virus\"></i>Contaminés : "+france.contamines+"</br><i class=\"fas fa-skull-crossbones\"></i>Morts : "+france.morts+"</br><i class=\"fas fa-users\"></i>Population : "+france.population+"</p>";
+    document.getElementById("regionAff").innerHTML=ad;
+}
+
 const onClick2 = (e) => { 
     x1 = Math.floor(e.clientX);
     y1 = Math.floor(e.clientY);

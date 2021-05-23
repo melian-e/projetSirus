@@ -62,6 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if(currentRegion != ""){
                 affBordure(currentRegion);
             }
+            else {
+                affFrance();
+            }
         }
         cmpt++;
 
