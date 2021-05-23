@@ -30,14 +30,15 @@ document.addEventListener('DOMContentLoaded', function() {
     matpxl = france.display(imgRegions);
     console.log(matpxl);
 
+
     let a = initPopulation(matpxl, dataFrance, matriceRegions, villes);
     matpxl = clone(a.map);
-    dataFrance = clone(a.dataPays);
+    dataFrance = a.dataPays;
     matriceRegions = clone(a.regions);
 
     a = apparitionVirus(5, matpxl, dataFrance, matriceRegions);
     matpxl = clone(a.map);
-    dataFrance = clone(a.dataPays);
+    dataFrance = a.dataPays;
     matriceRegions = clone(a.regions);
 
     affichage(matpxl, "population");
@@ -46,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(() => {
         a = propagation(matpxl, dataFrance, matriceRegions);
         matpxl = clone(a.map);
-        dataFrance = clone(a.dataPays);
+        dataFrance = a.dataPays;
         matriceRegions = clone(a.regions);
 
         france.mecontentement = dataFrance.mecontentement;

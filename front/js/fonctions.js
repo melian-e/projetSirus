@@ -54,11 +54,10 @@ const onClick = (e) => {
         france.display(currentMap);
         affichage(matpxl, currentFiltre);
         currentRegion = "";
-        //----------------------------------------------------------------------------------------------
-        //document.getElementById("actionh3").innerHTML = "Actions dans la region " + region.name;
-        //let ad="<p>Info Régions </br>France</br><i class=\"far fa-angry\"></i>Mécontentement : "+region.mecontentement+"%</br><i class=\"fas fa-head-side-virus\"></i>Contaminés : "+region.contamines+"</br><i class=\"fas fa-skull-crossbones\"></i>Morts : "+region.morts+"</br><i class=\"fas fa-users\"></i>Population : "+region.population+"</p>";
-        //document.getElementById("regionAff").innerHTML=ad;
-        //----------------------------------------------------------------------------------------------
+        
+        document.getElementById("actionh3").innerHTML = "Actions dans la region France";
+        let ad="<p>Info Régions </br>France</br><i class=\"far fa-angry\"></i>Mécontentement : "+france.mecontentement+"%</br><i class=\"fas fa-head-side-virus\"></i>Contaminés : "+france.contamines+"</br><i class=\"fas fa-skull-crossbones\"></i>Morts : "+france.morts+"</br><i class=\"fas fa-users\"></i>Population : "+france.population+"</p>";
+        document.getElementById("regionAff").innerHTML=ad;
     }
     console.log("Coordonnées  = " + x + ' ' + y);
     console.log(matpxl[x + y * 400].pop);
@@ -93,12 +92,10 @@ const onClick2 = (e) => {
         france.display(currentMap);
         affichage(matpxl, currentFiltre);
         currentRegion = "";
-        //----------------------------------------------------------------------------------------------
-        //document.getElementById("actionh3").innerHTML = "Actions dans la region " + region.name;
-        //let ad="<p>Info Régions </br>France</br><i class=\"far fa-angry\"></i>Mécontentement : "+region.mecontentement+"%</br><i class=\"fas fa-head-side-virus\"></i>Contaminés : "+region.contamines+"</br><i class=\"fas fa-skull-crossbones\"></i>Morts : "+region.morts+"</br><i class=\"fas fa-users\"></i>Population : "+region.population+"</p>";
-        //document.getElementById("regionAff").innerHTML=ad;
-        //----------------------------------------------------------------------------------------------
 
+        document.getElementById("actionh3").innerHTML = "Actions dans la region France";
+        let ad="<p>Info Régions </br>France</br><i class=\"far fa-angry\"></i>Mécontentement : "+france.mecontentement+"%</br><i class=\"fas fa-head-side-virus\"></i>Contaminés : "+france.contamines+"</br><i class=\"fas fa-skull-crossbones\"></i>Morts : "+france.morts+"</br><i class=\"fas fa-users\"></i>Population : "+france.population+"</p>";
+        document.getElementById("regionAff").innerHTML=ad;
     }
 };
 
@@ -107,6 +104,7 @@ divEcran.addEventListener('click', onClick2);
 
 function initPopulation(map, dataPays, regions, villes){
     let maxReached = 0;
+    console.log(dataPays);
     while(maxReached < 13){
         maxReached = 0;
         const x = Math.floor(Math.random() * map.length);
@@ -127,6 +125,7 @@ function initPopulation(map, dataPays, regions, villes){
             }
         });
     }
+    console.log(dataPays);
     return {map, dataPays, regions}
 }
 
