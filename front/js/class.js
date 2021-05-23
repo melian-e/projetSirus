@@ -23,7 +23,7 @@ class Pays{
             let data = new Object();
 
             data.pop = 0;
-            data.infectes = 0;
+            data.contamines = 0;
             data.morts = 0;
             data.gueris = 0;
             

@@ -109,13 +109,13 @@ function affichage(map, type){
         }
     } else if( type == "contamines"){
         for(let i = 0; i < map.length; i++){
-            if(map[i].infectes > max){
-                max = map[i].infectes;
+            if(map[i].contamines > max){
+                max = map[i].contamines;
             }
         }
         if(max > 0){
             for(let i = 0; i < canvas.width * canvas.height * 4; i += 4){
-                scannedData[i] += Math.floor(((map[i/4].infectes / max) * 255) * ((255-scannedData[i])/255));
+                scannedData[i] += Math.floor(((map[i/4].contamines / max) * 255) * ((255-scannedData[i])/255));
             }
         }
     } else if(type == "morts"){
@@ -135,22 +135,40 @@ function affichage(map, type){
     ctx.putImageData(scannedImage, 0, 0);
 }
 
-function propagation(map /* MUTATEURS + MATRICE */){
-    let change = 0;
+function propagation(map, regions /* + MUTATEURS */){
+    console.log("propagation");
         for(let i = 0; i < map.length; i++){
-            if((map[i].infectes > 0) && (i > 0) && ((i % 400) > 0)){
-                if(map[i-400].infectes < map[i+1].pop){
-                    if((Math.random() * 100) * ((map[i+1].infectes / map[i+1].pop) / 2 + 0.5) > 93){
-                        map[i+1].infectes += 1;
-                        change++;
-                    }
+            if((map[i].contamines > 0) && (i > 0) && ((i % 400) > 0)){
+                if(map[i-400].contamines < map[i-400].pop && map[i-400].region != ""){
+                    //if((Math.random() * 100) * ((map[i].contamines / map[i].pop) / 2 + 0.5) > 93){
+                        regions.forEach(elem => {
+                            if(map[i - 400].region == elem.name){
+                                elem.contamines += 1;
+                            }
+                        });
+                        map[i-400].contamines += 1;
+                    //}
                 }
-                if(map[i-1].infectes < map[i+1].pop){
-                    if((Math.random() * 100) * ((map[i+1].infectes / map[i+1].pop) / 2 + 0.5) > 93){
-                        map[i-1].infectes += 1;
-                        change++;
-                    }
+                if(map[i-1].contamines < map[i-1].pop && map[i-1].region != ""){
+                    //if((Math.random() * 100) * ((map[i].contamines / map[i].pop) / 2 + 0.5) > 93){
+                        regions.forEach(elem => {
+                            if(map[i - 1].region == elem.name){
+                                elem.contamines += 1;
+                            }
+                        });
+                        map[i-1].contamines += 1;
+                    //}
                 }
             }
         }
+        
+    return {map, regions};
+}
+
+function clone(base){
+    let newArray = [];
+    for(let i = 0; i < base.length; i++){
+        newArray[i] = base[i];
+    }
+    return newArray;
 }

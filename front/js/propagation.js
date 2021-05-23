@@ -24,15 +24,23 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log(matpxl);
 
     let a = initPopulation(matpxl, matriceRegions, villes);
-    matpxl = a.map;
-    matriceRegions = a.regions;
+    matpxl = clone(a.map);
+    matriceRegions = clone(a.regions);
 
     a = apparitionVirus(5, matpxl, matriceRegions);
-    matpxl = a.map;
-    matriceRegions = a.regions;
+    matpxl = clone(a.map);
+    matriceRegions = clone(a.regions);
 
     affichage(matpxl, "population");
 
+    setInterval(() => {
+        a = propagation(matpxl, matriceRegions);
+        matpxl = clone(a.map);
+        matriceRegions = clone(a.regions);
+        france.display(currentMap);
+        affichage(matpxl, currentFiltre);
+    }, 100);
+    
 });
 
 //%*r/255*pop/surf
