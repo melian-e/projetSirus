@@ -4,7 +4,7 @@ HTML {
 }
 
 body{
-  background-image: url('asset/nikamouk2.png');
+  background-image: url('asset/backflou.jpg');
   background-position: absolute;
   background-repeat: no-repeat;
   color:white;
@@ -14,10 +14,11 @@ body{
     border-radius: 30px;
     padding: 10px;
     width:97%;
+    height:50%;
     display: grid;
     gap: 1%;
     grid-template-columns: 6fr 3fr 3fr;
-    grid-template-rows: 5fr 35fr 20fr 10fr; 
+    grid-template-rows: 5fr 25fr 20fr ; 
     grid-template-areas:
       "Infos-avancement-partie Infos-avancement-partie Infos-avancement-partie"
       "Map Infos-region Liste-actions-région"
@@ -37,7 +38,6 @@ body{
 }
 
   .Map {
-   
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
@@ -47,39 +47,42 @@ body{
   }
   
   .Infos-region {
+    color: white;
     border-radius: 30px;
-    border: solid;
+    border: solid black;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     grid-template-areas:
       ".";
     grid-area: Infos-region;
-    background-color: rgb(0, 0, 0, 0.2);
+    background-color: rgb(0, 0, 0, 0.5);
   }
   
   .Filtres {
+    color: white;
     border-radius: 30px;
-    border: solid;
+    border: solid black;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     grid-template-areas:
       ".";
     grid-area: Filtres;
-    background-color: rgb(0, 0, 0, 0.2);
+    background-color: rgb(0, 0, 0, 0.5);
   }
   
   .Liste-actions-région {
+    color: white;
     border-radius: 30px;
-    border: solid;
+    border: solid black;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     grid-template-areas:
       ".";
     grid-area: Liste-actions-région;
-    background-color: rgb(0, 0, 0, 0.2);
+    background-color: rgb(0, 0, 0, 0.5);
   }
 
   h1{
@@ -106,7 +109,7 @@ body{
 }
 
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 3px rgba(0,0,0,0.3); 
+  box-shadow: inset 0 0 3px rgb(0,0,0); 
   -webkit-border-radius: 10px;
   border-radius: 10px;
 }
@@ -114,7 +117,7 @@ body{
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   border-radius: 10px;
-  background: rgba(86, 158, 199, 0.8); 
+  background: rgba(0, 0, 0);; 
   box-shadow: inset 0 0 3px rgba(0,0,0,0.5); 
 }
 
@@ -148,11 +151,19 @@ input.apple-switch:checked:after {
 
 .scroller{
   overflow-y: scroll;
-  scrollbar-color:rgb(58, 105, 133)rgba(86, 158, 199); ;
+  scrollbar-color:rgb(0, 0, 0)
+                  rgb(0, 0, 0, 0.2);
+  scrollbar-width: thin;
 }
 
 .listeningaction{
   margin-top: 2.5%;
   margin-bottom: 2.5%;
   margin-left: 2%;
+}
+
+i{
+  font-size:2em;
+  margin-bottom:4%;
+  margin-left:2%;
 }
