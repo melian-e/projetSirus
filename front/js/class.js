@@ -1,8 +1,13 @@
 class Pays{
-    constructor(imageRegions, imagePropa, imageSatellite) {
+    constructor(imageRegions, imagePropa, imageSatellite, mecontentement, contamines, morts, population, recovered) {
         this.imageRegions = imageRegions;
         this.imagePropa = imagePropa;
         this.imageSatellite = imageSatellite;
+        this.mecontentement = mecontentement;
+        this.contamines = contamines;
+        this.morts = morts;
+        this.population = population;
+        this.recovered = recovered;
     }
     display(img){
         const canvas = document.getElementById('canvas1');
@@ -24,6 +29,7 @@ class Pays{
 
             data.pop = 0;
             data.contamines = 0;
+            data.tmpcontamines = 0;
             data.morts = 0;
             data.gueris = 0;
             

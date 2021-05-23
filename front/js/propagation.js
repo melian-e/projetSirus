@@ -1,4 +1,4 @@
-let france = new Pays(imgRegions, imgPropa, imgSatellite);
+let france = new Pays(imgRegions, imgPropa, imgSatellite, 0, 0, 0, 0, 0);
 
 let matriceRegions = [];
 matriceRegions.push(new Region("Hauts-de-France", "rgb(0, 162, 217)", 0, 0, 0, 0, 5975757, 0));
@@ -18,27 +18,45 @@ matriceRegions.push(new Region("Corse", "rgb(255, 165, 121)", 0, 0, 0, 0, 349269
 let villes = [];
 //ici creation des villes
 
+let dataFrance = new Object();
+dataFrance.mecontentement = france.mecontentement;
+dataFrance.contamines = france.contamines;
+dataFrance.morts = france.morts;
+dataFrance.population = france.population;
+dataFrance.recovered = france.recovered;
+
 let matpxl;
 document.addEventListener('DOMContentLoaded', function() {
     matpxl = france.display(imgRegions);
     console.log(matpxl);
 
-    let a = initPopulation(matpxl, matriceRegions, villes);
+    let a = initPopulation(matpxl, dataFrance, matriceRegions, villes);
     matpxl = clone(a.map);
+    dataFrance = clone(a.dataPays);
     matriceRegions = clone(a.regions);
 
-    a = apparitionVirus(5, matpxl, matriceRegions);
+    a = apparitionVirus(5, matpxl, dataFrance, matriceRegions);
     matpxl = clone(a.map);
+    dataFrance = clone(a.dataPays);
     matriceRegions = clone(a.regions);
 
     affichage(matpxl, "population");
 
     setInterval(() => {
-        a = propagation(matpxl, matriceRegions);
+        a = propagation(matpxl, dataFrance, matriceRegions);
         matpxl = clone(a.map);
+        dataFrance = clone(a.dataPays);
         matriceRegions = clone(a.regions);
+
+        france.mecontentement = dataFrance.mecontentement;
+        france.population = dataFrance.population;
+        france.morts = dataFrance.morts;
+        france.recovered = dataFrance.recovered;
+        france.contamines = dataFrance.contamines;
+
         france.display(currentMap);
         affichage(matpxl, currentFiltre);
+        affBordure(currentRegion);
     }, 100);
     
 });

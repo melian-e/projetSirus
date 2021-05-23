@@ -21,33 +21,37 @@ const onClick = (e) => {
     matriceRegions.forEach(region => {
         
         if(region.name == matpxl[x + y * 400].region){
-            
-            const ctx2 = canvas.getContext('2d');
-            let scannedImage = ctx2.getImageData(0, 0, canvas.width, canvas.height);
-            let scannedData = scannedImage.data;
-            for(let i = 0; i < 4*400*400; i += 4){
-                if(matpxl[i/4].bordure == true && region.name == matpxl[i/4].region){
-                    scannedData[i] = 255;
-                    scannedData[i + 1] = 255;
-                    scannedData[i + 2] = 255;
-                }
-            }
-            scannedImage.data = scannedData;
-            ctx2.putImageData(scannedImage, 0, 0);
-            
-
-            document.getElementById("actionh3").innerHTML = "Actions dans la region " + region.name;
-            let ad="<p>Info Régions </br>"+region.name+"</br><i class=\"far fa-angry\"></i>Mécontentement : "+region.mecontentement+"%</br><i class=\"fas fa-head-side-virus\"></i>Contaminés : "+region.contamines+"</br><i class=\"fas fa-skull-crossbones\"></i>Morts : "+region.morts+"</br><i class=\"fas fa-users\"></i>Population : "+region.population+"</p>";
-            document.getElementById("regionAff").innerHTML=ad;
+            affBordure(region);
         }
     });
     console.log("Coordonnées  = " + x + ' ' + y);
     console.log(matpxl[x + y * 400].pop);
 };
 
+let currentRegion = "";
+function affBordure(region){
+    const ctx2 = canvas.getContext('2d');
+    let scannedImage = ctx2.getImageData(0, 0, canvas.width, canvas.height);
+    let scannedData = scannedImage.data;
+    for(let i = 0; i < 4*400*400; i += 4){
+        if(matpxl[i/4].bordure == true && region.name == matpxl[i/4].region){
+            scannedData[i] = 255;
+            scannedData[i + 1] = 255;
+            scannedData[i + 2] = 255;
+        }
+    }
+    scannedImage.data = scannedData;
+    ctx2.putImageData(scannedImage, 0, 0);
+
+    currentRegion = region;
+    document.getElementById("actionh3").innerHTML = "Actions dans la region " + region.name;
+    let ad="<p>Info Régions </br>"+region.name+"</br><i class=\"far fa-angry\"></i>Mécontentement : "+region.mecontentement+"%</br><i class=\"fas fa-head-side-virus\"></i>Contaminés : "+region.contamines+"</br><i class=\"fas fa-skull-crossbones\"></i>Morts : "+region.morts+"</br><i class=\"fas fa-users\"></i>Population : "+region.population+"</p>";
+    document.getElementById("regionAff").innerHTML=ad;
+}
+
 canvas.addEventListener('click', onClick);
 
-function initPopulation(map, regions, villes){
+function initPopulation(map, dataPays, regions, villes){
     let maxReached = 0;
     while(maxReached < 13){
         maxReached = 0;
@@ -58,6 +62,7 @@ function initPopulation(map, regions, villes){
                     if((e.population + 100) < e.populationMax){
                         map[x].pop += 100;
                         e.population += 100;
+                        dataPays.population += 100
                     }
                 }
             });
@@ -68,10 +73,10 @@ function initPopulation(map, regions, villes){
             }
         });
     }
-    return {map, regions}
+    return {map, dataPays, regions}
 }
 
-function apparitionVirus(nbFoyer, map, regions){
+function apparitionVirus(nbFoyer, map, dataPays, regions){
     for(let i = 0; i < nbFoyer; i++){
         const x = Math.floor(Math.random() * map.length);
         if(map[x].region != "" && map[x].pop > 0){
@@ -81,12 +86,13 @@ function apparitionVirus(nbFoyer, map, regions){
                     e.contamines += 1;
                 }
             });
+            dataPays.contamines += 1;
             console.log("Apparition d'un cas en : " + map[x].region + " " + x%400 + " " + Math.floor(x/400));
         } else {
             i--;
         }
     }
-    return {map, regions};
+    return {map, dataPays, regions};
 }
 
 function affichage(map, type){
@@ -135,34 +141,106 @@ function affichage(map, type){
     ctx.putImageData(scannedImage, 0, 0);
 }
 
-function propagation(map, regions /* + MUTATEURS */){
+function propagation(map, regions, dataPays /* + MUTATEURS */){
     console.log("propagation");
         for(let i = 0; i < map.length; i++){
             if((map[i].contamines > 0) && (i > 0) && ((i % 400) > 0)){
-                if(map[i-400].contamines < map[i-400].pop && map[i-400].region != ""){
-                    //if((Math.random() * 100) * ((map[i].contamines / map[i].pop) / 2 + 0.5) > 93){
+                if((Math.random() * 100) * ((map[i].contamines / map[i].pop) / 2 + 0.5) > 93){
+                    if(map[i-400].contamines < map[i-400].pop && map[i-400].region != ""){
                         regions.forEach(elem => {
                             if(map[i - 400].region == elem.name){
                                 elem.contamines += 1;
                             }
                         });
-                        map[i-400].contamines += 1;
-                    //}
+                        map[i-400].tmpcontamines += 1;
+                        dataPays.contamines += 1;
+                    }
                 }
-                if(map[i-1].contamines < map[i-1].pop && map[i-1].region != ""){
-                    //if((Math.random() * 100) * ((map[i].contamines / map[i].pop) / 2 + 0.5) > 93){
+                if((Math.random() * 100) * ((map[i].contamines / map[i].pop) / 2 + 0.5) > 93){
+                    if(map[i-1].contamines < map[i-1].pop && map[i-1].region != ""){
                         regions.forEach(elem => {
                             if(map[i - 1].region == elem.name){
                                 elem.contamines += 1;
                             }
                         });
-                        map[i-1].contamines += 1;
-                    //}
+                        map[i-1].tmpcontamines += 1;
+                        dataPays.contamines += 1;
+                    }
+                }
+                if((Math.random() * 100) * ((map[i].contamines / map[i].pop) / 2 + 0.5) > 93){
+                    if(map[i+1].contamines < map[i+1].pop && map[i+1].region != ""){
+                        regions.forEach(elem => {
+                            if(map[i + 1].region == elem.name){
+                                elem.contamines += 1;
+                            }
+                        });
+                        map[i+1].tmpcontamines += 1;
+                        dataPays.contamines += 1;
+                    }
+                }
+                if((Math.random() * 100) * ((map[i].contamines / map[i].pop) / 2 + 0.5) > 93){
+                    if(map[i+400].contamines < map[i+400].pop && map[i+400].region != ""){
+                        regions.forEach(elem => {
+                            if(map[i + 400].region == elem.name){
+                                elem.contamines += 1;
+                            }
+                        });
+                        map[i+400].tmpcontamines += 1;
+                        dataPays.contamines += 1;
+                    }
+                }
+                if((Math.random() * 100) * ((map[i].contamines / map[i].pop) / 2 + 0.5) > 45){
+                    if(map[i-401].contamines < map[i-401].pop && map[i-401].region != ""){
+                        regions.forEach(elem => {
+                            if(map[i - 401].region == elem.name){
+                                elem.contamines += 1;
+                            }
+                        });
+                        map[i-401].tmpcontamines += 1;
+                        dataPays.contamines += 1;
+                    }
+                }
+                if((Math.random() * 100) * ((map[i].contamines / map[i].pop) / 2 + 0.5) > 45){
+                    if(map[i-399].contamines < map[i-399].pop && map[i-399].region != ""){
+                        regions.forEach(elem => {
+                            if(map[i - 399].region == elem.name){
+                                elem.contamines += 1;
+                            }
+                        });
+                        map[i-399].tmpcontamines += 1;
+                        dataPays.contamines += 1;
+                    }
+                }
+                if((Math.random() * 100) * ((map[i].contamines / map[i].pop) / 2 + 0.5) > 45){
+                    if(map[i+399].contamines < map[i+399].pop && map[i+399].region != ""){
+                        regions.forEach(elem => {
+                            if(map[i + 399].region == elem.name){
+                                elem.contamines += 1;
+                            }
+                        });
+                        map[i+399].tmpcontamines += 1;
+                        dataPays.contamines += 1;
+                    }
+                }
+                if((Math.random() * 100) * ((map[i].contamines / map[i].pop) / 2 + 0.5) > 45){
+                    if(map[i+401].contamines < map[i+401].pop && map[i+401].region != ""){
+                        regions.forEach(elem => {
+                            if(map[i + 401].region == elem.name){
+                                elem.contamines += 1;
+                            }
+                        });
+                        map[i+401].tmpcontamines += 1;
+                        dataPays.contamines += 1;
+                    }
                 }
             }
         }
+        for(let i = 0; i < map.length; i++){
+            map[i].contamines += map[i].tmpcontamines;
+            map[i].tmpcontamines = 0;
+        }
         
-    return {map, regions};
+    return {map, regions, dataPays};
 }
 
 function clone(base){
