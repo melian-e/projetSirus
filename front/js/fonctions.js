@@ -14,8 +14,10 @@ const getClickCoords = (elem, event) => { //renvoie les coords de l'event dans l
 const onClick = (e) => {
     let { x, y } = getClickCoords(canvas, e);
 
-    x = Math.floor(x);
-    y = Math.floor(y);
+    let tmp = document.getElementById("canvas1");
+    //console.log(x * ( 400 / tmp.getBoundingClientRect().width))
+    x = Math.floor(x * ( 400 / tmp.getBoundingClientRect().width));
+    y = Math.floor(y * ( 400 / tmp.getBoundingClientRect().width ));
 
     france.display(currentMap);
     affichage(matpxl, currentFiltre);
