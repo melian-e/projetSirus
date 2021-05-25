@@ -72,9 +72,17 @@ function draw() {                                                               
             }
 
             taille[i] = random(50,300)                                              //taille du virus
-            CposX[i] = random(-1.75,1.75);                                          // vitesse en x du virus (si -, vers la gauche, si + vers la droite)
-            CposY[i] = random(-1.75,1.75);                                          // vitesse en y du virus (si -, vers la haut, si + vers la bas)    
-        }
+
+            if (taille[i] < 150){
+                CposX[i] = random(-0.5,0.5);                                          // vitesse en x du virus (si -, vers la gauche, si + vers la droite)
+                CposY[i] = random(-0.75,0.75);                                          // vitesse en y du virus (si -, vers la haut, si + vers la bas)    
+       
+            }
+            else{
+                CposX[i] = random(-1.75,1.75);                                          // vitesse en x du virus (si -, vers la gauche, si + vers la droite)
+                CposY[i] = random(-1.75,1.75);                                          // vitesse en y du virus (si -, vers la haut, si + vers la bas)    
+            }
+            }
 
     }
 

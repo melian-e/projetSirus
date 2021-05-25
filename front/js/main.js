@@ -13,14 +13,15 @@ socket.on('jsonaction', json =>{                            //reception JSON
 });
 
 let genre = 'map'
-document.getElementById("filtres").innerHTML += "<div style='margin-bottom:2%;'>Map des régions<input type='checkbox' id='map1' onclick='checkfiltres(genre,1)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' checked disabled></div></br>"
-document.getElementById("filtres").innerHTML += "<div style='margin-bottom:2%;'>Map neutre<input type='checkbox' id='map2' onclick='checkfiltres(genre,2)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' ></div></br>"
-document.getElementById("filtres").innerHTML += "<div style='margin-bottom:2%;'>Map vue satellite<input type='checkbox' id='map3' onclick='checkfiltres(genre,3)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' ></div>" 
+document.getElementById("filtres").innerHTML += "<h3 style='text-align:center; margin-bottom:5%; font-family: turfu;'>Filtres de la map</h3>"
+document.getElementById("filtres").innerHTML += "<div style='margin-left:2%; margin-bottom:1%;' class='listeningaction'>Map des régions<input type='checkbox' id='map1' onclick='checkfiltres(genre,1)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' checked disabled></div></br>"
+document.getElementById("filtres").innerHTML += "<div style='margin-left:2%' class='listeningaction'>Map neutre<input type='checkbox' id='map2' onclick='checkfiltres(genre,2)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' ></div></br>"
+document.getElementById("filtres").innerHTML += "<div style='margin-left:2%' class='listeningaction'>Map vue satellite<input type='checkbox' id='map3' onclick='checkfiltres(genre,3)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' ></div>" 
 
 let genre2 = 'filtre'
-document.getElementById("filtres").innerHTML += "<p style='border-top: solid; margin-left:10%; margin-right:10%;border-width: 2px;'></p><div style='margin-bottom:2%;'>Population<input type='checkbox' id='filtre1' onclick='checkfiltres(genre2,1)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' checked disabled></div></br>"
-document.getElementById("filtres").innerHTML += "<div style='margin-bottom:2%;'>Contaminés<input type='checkbox' id='filtre2' onclick='checkfiltres(genre2,2)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' ></div></br>"
-document.getElementById("filtres").innerHTML += "<div style='margin-bottom:2%;'>Décédés<input type='checkbox' id='filtre3' onclick='checkfiltres(genre2,3)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' ></div>" 
+document.getElementById("filtres").innerHTML += "<p style='border-top: solid; margin-left:10%; margin-right:10%;border-width: 2px;'></p><div style='margin-left:2%' class='listeningaction'>Population<input type='checkbox' id='filtre1' onclick='checkfiltres(genre2,1)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' checked disabled></div></br>"
+document.getElementById("filtres").innerHTML += "<div style='margin-left:2%' class='listeningaction'>Contaminés<input type='checkbox' id='filtre2' onclick='checkfiltres(genre2,2)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' ></div></br>"
+document.getElementById("filtres").innerHTML += "<div style='margin-left:2%' class='listeningaction'>Décédés<input type='checkbox' id='filtre3' onclick='checkfiltres(genre2,3)' class='apple-switch' style='position:relative; float:right; margin-right:2%;' ></div>" 
 
 function supression(id){                                    //fait apparaitre ou disparaitre le resume d'une action
     if(window.getComputedStyle(document.getElementById(id), null).getPropertyValue("display") == "none"){
@@ -53,6 +54,7 @@ function checkfiltres(genre, id){                          //regarde si un autre
         id3 = 3
         if(genre == 'map'){
             france.display(imgRegions);
+<<<<<<< HEAD
             currentMap = imgRegions;
             affichage(matpxl, currentFiltre);
         }
@@ -60,6 +62,8 @@ function checkfiltres(genre, id){                          //regarde si un autre
             france.display(currentMap);
             affichage(matpxl, "population");
             currentFiltre = "population";
+=======
+>>>>>>> de61584e5e3fbb8b3d5bf68a638427773cf6f6ba
         }
     }
     else if(id == 2){
@@ -67,6 +71,7 @@ function checkfiltres(genre, id){                          //regarde si un autre
         id3 = 3
         if(genre == 'map'){
             france.display(imgPropa);
+<<<<<<< HEAD
             currentMap = imgPropa;
             affichage(matpxl, currentFiltre);
         }
@@ -74,6 +79,8 @@ function checkfiltres(genre, id){                          //regarde si un autre
             france.display(currentMap);
             affichage(matpxl, "contamines");
             currentFiltre = "contamines";
+=======
+>>>>>>> de61584e5e3fbb8b3d5bf68a638427773cf6f6ba
         }
     }
     else{
@@ -81,6 +88,7 @@ function checkfiltres(genre, id){                          //regarde si un autre
         id3 = 2
         if(genre == 'map'){
             france.display(imgSatellite);
+<<<<<<< HEAD
             currentMap = imgSatellite;
             affichage(matpxl, currentFiltre);
         }
@@ -88,6 +96,8 @@ function checkfiltres(genre, id){                          //regarde si un autre
             france.display(currentMap);
             affichage(matpxl, "morts");
             currentFiltre = "morts";
+=======
+>>>>>>> de61584e5e3fbb8b3d5bf68a638427773cf6f6ba
         }
     }
 
