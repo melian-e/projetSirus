@@ -7,11 +7,8 @@ body{
   background-image: url('asset/backflou.jpg');
   background-position: absolute;
   background-repeat: no-repeat;
-<<<<<<< HEAD
   background-size: auto;
-=======
   color:white;
->>>>>>> de61584e5e3fbb8b3d5bf68a638427773cf6f6ba
 }
 
 .grid-container {
@@ -22,9 +19,9 @@ body{
     display: grid;
     gap: 1%;
     grid-template-columns: 6fr 3fr 3fr;
-    grid-template-rows: 5fr 25fr 20fr ; 
+    grid-template-rows: 5fr 20fr 25fr ; 
     grid-template-areas:
-      "Infos-avancement-partie Infos-avancement-partie Infos-avancement-partie"
+      "Infos-avancement-partie Infos-region Liste-actions-région"
       "Map Infos-region Liste-actions-région"
       "Map Filtres Liste-actions-région";
 }
